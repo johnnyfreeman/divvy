@@ -18,22 +18,22 @@ var next30days = new RRule({
 //--------------------------------------
 
 var Calendar = function() {
-	var cal = this;
-	this.dates = {};
+  var cal = this;
+  this.dates = {};
 };
 
 Calendar.prototype.addBill = function(bill) {
-	var calDates = this.dates;
-	// console.info(bill);
-	_.each(bill.dates.between(now, oneMonth), function(billDate) {
-			var key = billDate.getTime();
+  var calDates = this.dates;
 
-			if (typeof calDates[key] === 'undefined') {
-				calDates[key] = [];
-			}
-			
-			calDates[key].push({title: bill.title, amount: bill.amount});
-	});
+  _.each(bill.dates.between(now, oneMonth), function(billDate) {
+      var key = billDate.getTime();
+
+      if (!calDates.hasOwnProperty(key)) {
+        calDates[key] = [];
+      }
+      
+      calDates[key].push({title: bill.title, amount: bill.amount});
+  });
 };
 
 var calendar = new Calendar();
@@ -41,9 +41,9 @@ var calendar = new Calendar();
 //--------------------------------------
 
 var Bill = function(title, amount, dates) {
-	this.title = title;
-	this.amount = amount;
-	this.dates = dates;
+  this.title = title;
+  this.amount = amount;
+  this.dates = dates;
 };
 
 // --------------------------------------
@@ -51,163 +51,172 @@ var Bill = function(title, amount, dates) {
 // --------------------------------------
 
 calendar.addBill(new Bill(
-	'paycheck',
-	1707.85,
-	new RRule({
-	  freq: RRule.WEEKLY,
-	  count: 0,
-	  interval: 2,
-	  byweekday: RRule.FR
-	})
+  'paycheck',
+  1707.85,
+  new RRule({
+    freq: RRule.WEEKLY,
+    count: 0,
+    interval: 2,
+    byweekday: RRule.FR,
+    byhour: [0],
+    byminute: [0],
+    bysecond: [0]
+  })
 ));
 
 calendar.addBill(new Bill(
-	'rent',
-	1001.78,
-	new RRule({
-	  freq: RRule.MONTHLY,
-	  count: 0,
-	  bymonthday: [1],
-	  byhour: [0],
-	  byminute: [0],
-	  bysecond: [0]
-	})
+  'rent',
+  -1001.78,
+  new RRule({
+    freq: RRule.MONTHLY,
+    count: 0,
+    bymonthday: [1],
+    byhour: [0],
+    byminute: [0],
+    bysecond: [0]
+  })
 ));
 
 calendar.addBill(new Bill(
-	'Verizon',
-	150,
-	new RRule({
+  'Verizon',
+  -150,
+  new RRule({
     freq: RRule.MONTHLY, 
-	  count: 0,
-	  bymonthday: [8],
-	  byhour: [0],
-	  byminute: [0],
-	  bysecond: [0]
-	})
+    count: 0,
+    bymonthday: [8],
+    byhour: [0],
+    byminute: [0],
+    bysecond: [0]
+  })
 ));
 
 calendar.addBill(new Bill(
-	'FPL',
-	130,
-	new RRule({
+  'FPL',
+  -130,
+  new RRule({
     freq: RRule.MONTHLY, 
-	  count: 0,
-	  bymonthday: [8],
-	  byhour: [0],
-	  byminute: [0],
-	  bysecond: [0]
-	})
+    count: 0,
+    bymonthday: [8],
+    byhour: [0],
+    byminute: [0],
+    bysecond: [0]
+  })
 ));
 
 calendar.addBill(new Bill(
-	'Care Credit',
-	28,
-	new RRule({
+  'Care Credit',
+  -28,
+  new RRule({
     freq: RRule.MONTHLY, 
-	  count: 0,
-	  bymonthday: [12],
-	  byhour: [0],
-	  byminute: [0],
-	  bysecond: [0]
-	})
+    count: 0,
+    bymonthday: [12],
+    byhour: [0],
+    byminute: [0],
+    bysecond: [0]
+  })
 ));
 
 calendar.addBill(new Bill(
-	'City of Melbourne (Water)',
-	80,
-	new RRule({
+  'City of Melbourne (Water)',
+  -80,
+  new RRule({
     freq: RRule.MONTHLY, 
-	  count: 0,
-	  bymonthday: [13],
-	  byhour: [0],
-	  byminute: [0],
-	  bysecond: [0]
-	})
+    count: 0,
+    bymonthday: [13],
+    byhour: [0],
+    byminute: [0],
+    bysecond: [0]
+  })
 ));
 
 calendar.addBill(new Bill(
-	'Brighthouse',
-	83,
-	new RRule({
+  'Brighthouse',
+  -83,
+  new RRule({
     freq: RRule.MONTHLY, 
-	  count: 0,
-	  bymonthday: [18],
-	  byhour: [0],
-	  byminute: [0],
-	  bysecond: [0]
-	})
+    count: 0,
+    bymonthday: [18],
+    byhour: [0],
+    byminute: [0],
+    bysecond: [0]
+  })
 ));
 
 calendar.addBill(new Bill(
-	'Hulu',
-	7,
-	new RRule({
+  'Hulu',
+  -7,
+  new RRule({
     freq: RRule.MONTHLY, 
-	  count: 0,
-	  bymonthday: [25],
-	  byhour: [0],
-	  byminute: [0],
-	  bysecond: [0]
-	})
+    count: 0,
+    bymonthday: [25],
+    byhour: [0],
+    byminute: [0],
+    bysecond: [0]
+  })
 ));
 
 calendar.addBill(new Bill(
-	'Progressive',
-	123,
-	new RRule({
+  'Progressive',
+  -123,
+  new RRule({
     freq: RRule.MONTHLY, 
-	  count: 0,
-	  bymonthday: [26],
-	  byhour: [0],
-	  byminute: [0],
-	  bysecond: [0]
-	})
+    count: 0,
+    bymonthday: [26],
+    byhour: [0],
+    byminute: [0],
+    bysecond: [0]
+  })
 ));
 
 calendar.addBill(new Bill(
-	'Media Temple',
-	20,
-	new RRule({
+  'Media Temple',
+  -20,
+  new RRule({
     freq: RRule.MONTHLY, 
-	  count: 0,
-	  bymonthday: [31],
-	  byhour: [0],
-	  byminute: [0],
-	  bysecond: [0]
-	})
+    count: 0,
+    bymonthday: [31],
+    byhour: [0],
+    byminute: [0],
+    bysecond: [0]
+  })
 ));
 
 calendar.addBill(new Bill(
-	'Xbox Live',
-	10,
-	new RRule({
+  'Xbox Live',
+  -10,
+  new RRule({
     freq: RRule.MONTHLY, 
-	  count: 0,
-	  bymonthday: [31],
-	  byhour: [0],
-	  byminute: [0],
-	  bysecond: [0]
-	})
+    count: 0,
+    bymonthday: [31],
+    byhour: [0],
+    byminute: [0],
+    bysecond: [0]
+  })
 ));
 
 // --------------------------------------
 
 var $calendar = $('#calendar');
-// console.log(calendar.dates);
-// calendar.dates = _.sortBy(calendar.dates, function(bills, date) {
-//   return date;
-// });
-// console.log(calendar.dates);
-_.each(calendar.dates, function(bills, timestamp) {
 
-	var $bills = $('<ul />');
 
-	_.each(bills, function(bill) {
-		$bills.append('<li>'+bill.title+' ($'+bill.amount+')</li>');
-	});
+_.each(next30days.all(), function(date) {
+  var key = date.getTime();
 
-	var date = new Date(parseInt(timestamp)).toDateString();
-	var $date = $('<li />').text(date).append($bills);
-	$calendar.append($date);
+  if (!calendar.dates.hasOwnProperty(key)) return;
+  
+  var $bills = $('<ul />');
+
+  _.each(calendar.dates[key], function(bill) {
+    $bills.append('<li>'+bill.title+' ($'+bill.amount+')</li>');
+  });
+
+  var date = new Date(parseInt(key)).toDateString();
+
+  var $date = $('<li />').text(date).append($bills);
+
+  $calendar.append($date);
 });
+
+
+
+
