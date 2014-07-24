@@ -8,7 +8,7 @@ class SuggestedDeposit extends Deposit
     $this->envelope($e);
 
     // calculate suggested amount and store
-    $deposits = Deposits::between(new Date, $e->targetDate);
+    $deposits = Deposits::between(new DateTime, $e->targetDate);
     $numdeposits = count($deposits);
     $this->amount = $numdeposits > 0 ? $e->targetAmount / count($deposits) : $e->targetAmount;
   }
@@ -18,8 +18,8 @@ class SuggestedDeposit extends Deposit
   public function envelope(Envelope $e = null)
   {
     if (!is_null($e)) {
-      $this->$_targetEnvelope = $e;
+      $this->_targetEnvelope = $e;
     }
-    return $this->$_targetEnvelope;
+    return $this->_targetEnvelope;
   }
 }
