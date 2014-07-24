@@ -42,7 +42,7 @@ $app['Transaction'] = $app->share(function ($app) {
     return new Transaction($app);
 });
 
-$app['Transactions']->between(1, 2);
+$app['Transaction']->get(1);
 
 $app->get('/', function () use ($app) {
   return $app->json($app['Transactions']->all(), 200);
