@@ -1,6 +1,10 @@
 <?php
 
-class Envelope
+namespace Divvy\Model;
+
+use Divvy\Model;
+
+class Envelope extends Model
 {
   public $currentAmount;
   public $targetAmount;

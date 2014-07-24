@@ -1,6 +1,11 @@
 <?php
 
-class Transaction extends Entity
+namespace Divvy\Model;
+
+use DateTime;
+use Divvy\Model;
+
+class Transaction extends Model
 {
   public $amount;
   public $dateTime;

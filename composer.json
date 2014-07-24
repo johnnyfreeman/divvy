@@ -3,6 +3,8 @@
         "silex/silex": "~1.2"
     },
     "autoload": {
-        "psr-4": { "": "app/" }
+        "psr-4": {
+            "Divvy\\": "app/"
+        }
     }
 }

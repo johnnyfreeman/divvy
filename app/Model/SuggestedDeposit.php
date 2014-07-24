@@ -1,5 +1,7 @@
 <?php
 
+namespace Divvy\Model;
+
 class SuggestedDeposit extends Deposit
 {
   public function __construct(Envelope $e)
